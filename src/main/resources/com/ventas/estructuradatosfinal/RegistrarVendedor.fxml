@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:controller="com.ventas.estructuradatosfinal.Controller.RegistroVendedorController" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="10" vgap="10">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Nombre:"/>
+    <TextField fx:id="nombreTextField" GridPane.columnIndex="1"/>
+
+    <Label text="Apellido:" GridPane.rowIndex="1"/>
+    <TextField fx:id="apellidoTextField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Cédula:" GridPane.rowIndex="2"/>
+    <TextField fx:id="cedulaTextField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <Label text="Dirección:" GridPane.rowIndex="3"/>
+    <TextField fx:id="direccionTextField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Label text="Usuario:" GridPane.rowIndex="4"/>
+    <TextField fx:id="usuarioTextField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+    <Label text="Contraseña:" GridPane.rowIndex="5"/>
+    <PasswordField fx:id="contrasenaTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+    <Button text="Crear" onAction="#crearVendedor" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+</GridPane>
