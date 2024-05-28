@@ -42,10 +42,6 @@ public class ChatController {
     }
 
     private Vendedor obtenerReceptor() {
-        // Aquí puedes implementar la lógica para obtener el receptor adecuado
-        // Por ejemplo, puedes tener un campo receptor en la clase ChatController
-        // o puedes obtenerlo de la interfaz de usuario
-        // Por ahora, lo dejaremos como una implementación ficticia
         return currentUser; // Simplemente usamos el usuario actual como receptor por ahora
     }
 
