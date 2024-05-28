@@ -48,6 +48,7 @@ public class MainController {
 
     private static final String FILENAME = "muro.txt";
     private static final String VENDEDORES_FILE = "vendedores.txt";
+    private static final String PRODUCTOS_FILE = "productos.txt";
 
     @FXML
     public void initialize() {
@@ -60,6 +61,7 @@ public class MainController {
         // Cargar vendedores y mensajes desde los archivos
         cargarVendedores();
         cargarMensajes();
+        cargarProductos();
     }
 
     @FXML
@@ -144,6 +146,23 @@ public class MainController {
         }
     }
 
+    @FXML
+    private void admins() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ventas/estructuradatosfinal/DashboardView.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Administrador");
+            DashboardController controller = loader.getController();
+
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void guardarVendedores() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(VENDEDORES_FILE))) {
             oos.writeInt(vendedores.getTamanio()); // Escribir el tamaño de la lista
@@ -154,7 +173,6 @@ public class MainController {
             e.printStackTrace();
         }
     }
-
 
     private void cargarVendedores() {
         File file = new File(VENDEDORES_FILE);
@@ -170,7 +188,6 @@ public class MainController {
             }
         }
     }
-
 
     private void guardarMensajes() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))) {
@@ -196,6 +213,21 @@ public class MainController {
             }
         }
     }
+
+    private void cargarProductos() {
+        File file = new File(PRODUCTOS_FILE);
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String producto;
+                while ((producto = reader.readLine()) != null) {
+                    productosListView.getItems().add(producto);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     public void mostrarAlarma(String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);

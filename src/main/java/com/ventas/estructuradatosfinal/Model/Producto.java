@@ -8,6 +8,8 @@ public class Producto {
     private double precio;
     private String estado; // "vendido", "publicado", "cancelado"
     private LocalDateTime fechaPublicacion;
+    private Vendedor vendedor; // Campo para almacenar el vendedor asociado con el producto
+
 
     public Producto(String nombre, double precio, LocalDateTime fechaPublicacion) {
         this.nombre = nombre;
@@ -16,5 +18,7 @@ public class Producto {
         this.estado = "publicado"; // Por defecto, un producto se publica cuando se crea
     }
 
-    // Getters y setters
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
 }
