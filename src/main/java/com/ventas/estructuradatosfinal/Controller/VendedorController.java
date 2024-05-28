@@ -1,5 +1,6 @@
 package com.ventas.estructuradatosfinal.Controller;
 
+import com.ventas.estructuradatosfinal.Model.Producto;
 import com.ventas.estructuradatosfinal.Model.Vendedor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -24,10 +25,20 @@ public class VendedorController {
     public void agregarProducto() {
         String nombreProducto = nomProducto.getText();
         double precio = Double.parseDouble(precProducto.getText());
-        productosListView.getItems().add(nombreProducto + " - " + precio+"$"+ " - " + fechaActual());
+        String productoInfo = nombreProducto + " - " + precio + "$ - " + fechaActual() + " - " + vendedor.getNombre();
+
+        // Crear el producto
+        Producto nuevoProducto = new Producto(nombreProducto, precio, LocalDateTime.now());
+        // Agregar el producto al vendedor
+        vendedor.agregarProducto(nuevoProducto);
+        // Agregar el producto a la lista de productos en la interfaz
+        productosListView.getItems().add(productoInfo);
+        // Limpiar los campos
         limpiarCampos();
+        // Guardar los productos
         guardarProductos();
     }
+
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
@@ -74,5 +85,14 @@ public class VendedorController {
     private String fechaActual() {
         LocalDateTime fecha = LocalDateTime.now();
         return fecha.getDayOfMonth() + "/" + fecha.getMonthValue() + "/" + fecha.getYear();
+    }
+
+    private void guardarProductoGlobal(String productoInfo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("productos.txt", true))) {
+            writer.write(productoInfo);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

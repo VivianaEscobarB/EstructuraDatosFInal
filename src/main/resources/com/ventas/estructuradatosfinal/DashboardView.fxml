@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="450.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ventas.estructuradatosfinal.Controller.DashboardController">
+    <VBox alignment="TOP_CENTER" layoutX="4.0" prefHeight="445.0" prefWidth="501.0" spacing="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+        <Label style="-fx-font-size: 24px;" text="Tablero de Control" />
+        <HBox spacing="10.0">
+            <Label text="Seleccione una métrica:" />
+            <ComboBox fx:id="metricasComboBox" prefWidth="200.0" />
+        </HBox>
+        <HBox spacing="10.0">
+            <Label text="Usuario 1:" />
+            <TextField fx:id="usuario1TextField" promptText="Usuario 1" />
+            <Label text="Usuario 2:" />
+            <TextField fx:id="usuario2TextField" promptText="Usuario 2" />
+        </HBox>
+        <HBox spacing="10.0">
+            <Label text="Fecha Inicio:" />
+            <DatePicker fx:id="fechaInicioDatePicker" />
+            <Label text="Fecha Fin:" />
+            <DatePicker fx:id="fechaFinDatePicker" />
+        </HBox>
+        <Button onAction="#generarReporte" text="Generar Reporte" />
+        <ListView fx:id="resultadosListView" prefHeight="260.0" prefWidth="373.0" />
+    </VBox>
+</AnchorPane>
