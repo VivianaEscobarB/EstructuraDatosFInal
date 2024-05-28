@@ -1,0 +1,95 @@
+package com.ventas.estructuradatosfinal.PruebasUnitarias;
+
+import com.ventas.estructuradatosfinal.Model.AlmacenamientoDatos;
+import com.ventas.estructuradatosfinal.Model.Mensaje;
+import com.ventas.estructuradatosfinal.Model.Producto;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AlmacenamientoDatosTest {
+    private AlmacenamientoDatos almacenamientoDatos;
+
+    @BeforeEach
+    public void setUp() {
+        almacenamientoDatos = new AlmacenamientoDatos();
+    }
+
+    @Test
+    public void testAgregarProducto() {
+        Producto producto = new Producto(1, "Producto1");
+        almacenamientoDatos.guardarProducto();
+        List<Producto> productos = almacenamientoDatos.guardarProducto();
+        assertEquals(1, productos.size());
+        assertEquals(producto, productos.get(0));
+    }
+
+    @Test
+    public void testAgregarMensaje() {
+        Mensaje mensaje = new Mensaje(1, "Mensaje1");
+        almacenamientoDatos.getClass();
+        List<Mensaje> mensajes = almacenamientoDatos.equals();
+        assertEquals(1, mensajes.size());
+        assertEquals(mensaje, mensajes.get(0));
+    }
+
+    @Test
+    public void testBuscarProductoPorId() {
+        Producto producto = new Producto(1, "Producto1");
+        almacenamientoDatos.guardarProducto();
+        Producto encontrado = almacenamientoDatos.guardarProducto(int);
+        assertNotNull(encontrado);
+        assertEquals(producto, encontrado);
+    }
+
+    @Test
+    public void testBuscarMensajePorId() {
+        Mensaje mensaje = new Mensaje(1, "Mensaje1");
+        almacenamientoDatos.agregarMensaje(mensaje);
+        Mensaje encontrado = almacenamientoDatos.buscarMensajePorId(1);
+        assertNotNull(encontrado);
+        assertEquals(mensaje, encontrado);
+    }
+
+    @Test
+    public void testEliminarProducto() {
+        Producto producto = new Producto(1, "Producto1");
+        almacenamientoDatos.agregarProducto(producto);
+        almacenamientoDatos.eliminarProducto(1);
+        List<Producto> productos = almacenamientoDatos.obtenerProductos();
+        assertTrue(productos.isEmpty());
+    }
+
+    @Test
+    public void testEliminarMensaje() {
+        Mensaje mensaje = new Mensaje(1, "Mensaje1");
+        almacenamientoDatos.agregarMensaje(mensaje);
+        almacenamientoDatos.eliminarMensaje(1);
+        List<Mensaje> mensajes = almacenamientoDatos.obtenerMensajes();
+        assertTrue(mensajes.isEmpty());
+    }
+
+    @Test
+    public void testObtenerProductosYMensajes() {
+        Producto producto1 = new Producto(1, "Producto1");
+        Producto producto2 = new Producto(2, "Producto2");
+        almacenamientoDatos.agregarProducto(producto1);
+        almacenamientoDatos.agregarProducto(producto2);
+        List<Producto> productos = almacenamientoDatos.obtenerProductos();
+        assertEquals(2, productos.size());
+        assertTrue(productos.contains(producto1));
+        assertTrue(productos.contains(producto2));
+
+        Mensaje mensaje1 = new Mensaje(1, "Mensaje1");
+        Mensaje mensaje2 = new Mensaje(2, "Mensaje2");
+        almacenamientoDatos.agregarMensaje(mensaje1);
+        almacenamientoDatos.agregarMensaje(mensaje2);
+        List<Mensaje> mensajes = almacenamientoDatos.obtenerMensajes();
+        assertEquals(2, mensajes.size());
+        assertTrue(mensajes.contains(mensaje1));
+        assertTrue(mensajes.contains(mensaje2));
+    }
+}
